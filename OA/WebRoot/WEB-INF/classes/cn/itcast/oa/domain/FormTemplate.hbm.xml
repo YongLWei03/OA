@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd"> <!-- 此句不能丢 -->
+
+<hibernate-mapping package="cn.itcast.oa.domain">
+ <class name="FormTemplate" table="itcast_formTemplate" >
+
+    	<id name="id">
+    		<generator class="native"/>
+    	</id>
+        <property name="name"/>
+        <property name="processDefinitionKey" />
+        <property name="path" />
+        
+        <!-- forms属性与Form的 1：n关系 -->
+        <set name="forms">  
+           <key column="formTemplateId"></key>
+           <one-to-many class="Form"/>
+        </set>     
+          
+	</class>
+</hibernate-mapping>

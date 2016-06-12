@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd"> <!-- 此句不能丢 -->
+
+<hibernate-mapping package="cn.itcast.oa.domain">
+ <class name="Forum" table="itcast_Forum" >
+
+    	<id name="id">
+    		<generator class="native"/>
+    	</id>
+        <property name="name"/>
+        <property name="description"/>
+        <property name="position"/>
+        <property name="topicCount"/>
+        <property name="articleCount"/>
+        
+        <!-- topics属性，与Topic类的1：N关系 -->
+        <set name="topics">
+          <key column="forumId"></key>
+          <one-to-many class="Topic" />
+        </set>       
+        
+        <!-- lastTopic属性，与Topic类的1：1关系。
+                           采用基于外键的1:1映射,本类有外键 -->       
+        <many-to-one name="lastTopic" class="Topic" column="lastTopicId" unique="true"></many-to-one>
+        
+  
+ </class>
+</hibernate-mapping>
